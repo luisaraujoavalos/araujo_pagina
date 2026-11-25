@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ficha de producto NOVAK: fotos de frente, espalda y costados, tallas, colores y especificaciones.">
+    <meta name="theme-color" content="#1f2038">
+    <title>Producto - NOVAK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Orden de los scripts: datos -> núcleo -> estadísticas -> administrador -> páginas -->
+    <script src="js/datos.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estadisticas.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/tienda.js" defer></script>
+</head>
+
+<body data-pagina="producto">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- CABECERA: la dibuja js/app.js para que sea igual en todas las páginas -->
+    <header class="cabecera" id="cabecera"></header>
+
+    <main id="contenido">
+        <!-- La ficha completa (4 vistas, tallas, colores, especificaciones) la arma js/tienda.js -->
+        <div id="ficha" class="ficha"></div>
+    </main>
+
+    <!-- PIE DE PÁGINA: lo dibuja js/app.js -->
+    <footer class="pie" id="pie"></footer>
+</body>
+
+</html>

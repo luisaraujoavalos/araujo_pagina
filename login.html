@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ingresa a NOVAK como cliente o administrador.">
+    <meta name="theme-color" content="#1f2038">
+    <title>Ingresar - NOVAK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Orden de los scripts: datos -> núcleo -> estadísticas -> administrador -> páginas -->
+    <script src="js/datos.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estadisticas.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/tienda.js" defer></script>
+</head>
+
+<body data-pagina="login">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- CABECERA: la dibuja js/app.js para que sea igual en todas las páginas -->
+    <header class="cabecera" id="cabecera"></header>
+
+    <main id="contenido">
+        <section class="login" aria-labelledby="titulo-login">
+            <div class="login-visual">
+                <p class="login-sobre">STAY DIFFERENT</p>
+                <h1>Vístete a tu manera</h1>
+                <p>Ingresa para comprar más rápido, seguir tus pedidos y guardar tus favoritos. O entra como administrador para ver las estadísticas de la tienda.</p>
+            </div>
+
+            <div class="login-panel">
+                <div class="login-caja" id="login-contenido">
+                    <h2 id="titulo-login">Ingresar a NOVAK</h2>
+                    <p>Elige cómo quieres entrar.</p>
+
+                    <form id="form-login" action="#" method="post" novalidate>
+                        <div class="selector-rol" role="radiogroup" aria-label="Tipo de acceso">
+                            <label class="rol-opcion">
+                                <input type="radio" name="rol" value="usuario" checked>
+                                <span class="rol-tarjeta"><strong>Cliente</strong><span>Comprar y ver mis pedidos</span></span>
+                            </label>
+                            <label class="rol-opcion">
+                                <input type="radio" name="rol" value="admin">
+                                <span class="rol-tarjeta"><strong>Administrador</strong><span>Estadísticas y productos</span></span>
+                            </label>
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="loginUsuario">Correo</label>
+                            <input type="email" id="loginUsuario" name="usuario" placeholder="nombre@correo.com" autocomplete="username" required>
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="loginClave">Contraseña</label>
+                            <input type="password" id="loginClave" name="clave" autocomplete="current-password" required>
+                        </div>
+
+                        <button type="submit" class="boton boton-bloque">Ingresar</button>
+                        <p class="mensaje" role="alert" hidden></p>
+                    </form>
+
+                    <div class="pista-demo">
+                        <strong>Cuentas de prueba</strong><br>
+                        Cliente: <code>cliente@novak.pe</code> / <code>cliente123</code><br>
+                        Administrador: <code>admin@novak.pe</code> / <code>admin123</code><br>
+                        Otros clientes de ejemplo usan la clave <code>novak123</code>
+                    </div>
+
+                    <p class="enlaces-login">
+                        <span>¿Primera vez? <a href="registro.html">Crea tu cuenta</a></span>
+                        <a href="catalogo.html">Seguir sin cuenta</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA: lo dibuja js/app.js -->
+    <footer class="pie" id="pie"></footer>
+</body>
+
+</html>

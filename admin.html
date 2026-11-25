@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel de administración de NOVAK: estadísticas de prendas y clientes, inventario, pedidos y ofertas.">
+    <meta name="theme-color" content="#1f2038">
+    <title>Panel admin - NOVAK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Orden de los scripts: datos -> núcleo -> estadísticas -> administrador -> páginas -->
+    <script src="js/datos.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estadisticas.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/tienda.js" defer></script>
+</head>
+
+<body data-pagina="admin">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- CABECERA: la dibuja js/app.js para que sea igual en todas las páginas -->
+    <header class="cabecera" id="cabecera"></header>
+
+    <main id="contenido">
+        <div class="banner-pagina banner-admin">
+            <div class="contenedor">
+                <h1>Panel de administración</h1>
+                <p>Estadísticas de ventas, de cada prenda y de cada cliente</p>
+            </div>
+        </div>
+
+        <section class="seccion seccion-admin" aria-label="Administración">
+            <div class="contenedor">
+                <div class="pestanas-admin" role="tablist" aria-label="Secciones del panel">
+                    <button type="button" role="tab" data-tab="resumen">📊 Resumen</button>
+                    <button type="button" role="tab" data-tab="productos">👕 Prendas</button>
+                    <button type="button" role="tab" data-tab="clientes">👥 Clientes</button>
+                    <button type="button" role="tab" data-tab="pedidos">📦 Pedidos</button>
+                    <button type="button" role="tab" data-tab="ofertas">🔥 Ofertas y cupones</button>
+                </div>
+
+                <!-- RESUMEN -->
+                <div class="pestana-panel" id="tab-resumen" role="tabpanel">
+                    <div class="barra-admin">
+                        <h2>Resumen de la tienda</h2>
+                        <label class="orden-etiqueta">Periodo
+                            <select id="rango-resumen">
+                                <option value="30">Últimos 30 días</option>
+                                <option value="90">Últimos 90 días</option>
+                                <option value="180" selected>Últimos 6 meses</option>
+                                <option value="0">Todo el historial</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div id="resumen-kpis"></div>
+                    <div id="resumen-graficos"></div>
+                </div>
+
+                <!-- PRENDAS -->
+                <div class="pestana-panel" id="tab-productos" role="tabpanel" hidden>
+                    <div class="barra-admin">
+                        <input type="search" id="buscar-producto-admin" class="buscador" placeholder="Buscar por nombre o SKU..." aria-label="Buscar prenda">
+                        <select id="filtro-cat-admin" aria-label="Filtrar por categoría"></select>
+                        <select id="orden-productos-admin" aria-label="Ordenar">
+                            <option value="">Orden del catálogo</option>
+                            <option value="vendidos">Más vendidos</option>
+                            <option value="vistas">Más vistos</option>
+                            <option value="stock">Menor stock</option>
+                        </select>
+                        <button type="button" class="boton" data-accion="nuevo">+ Agregar prenda</button>
+                    </div>
+                    <p class="contador-resultados" id="conteo-productos"></p>
+                    <div class="tabla-scroll">
+                        <table>
+                            <caption class="sr-only">Inventario de prendas</caption>
+                            <thead><tr><th scope="col">Prenda</th><th scope="col">Categoría</th><th scope="col">Precio</th><th scope="col">Stock</th><th scope="col">Vendidos</th><th scope="col">Vistas</th><th scope="col">Acciones</th></tr></thead>
+                            <tbody id="cuerpo-inventario"></tbody>
+                        </table>
+                    </div>
+                    <p class="sin-resultados" id="sin-inventario" hidden>No hay prendas que coincidan.</p>
+                </div>
+
+                <!-- CLIENTES -->
+                <div class="pestana-panel" id="tab-clientes" role="tabpanel" hidden>
+                    <div class="barra-admin">
+                        <input type="search" id="buscar-cliente-admin" class="buscador" placeholder="Buscar cliente por nombre o correo..." aria-label="Buscar cliente">
+                        <p class="contador-resultados" id="conteo-clientes"></p>
+                    </div>
+                    <p class="nota">Toca <b>Ver estadísticas</b> para conocer qué compra cada cliente: categoría y segmento favorito, colores, tallas, gasto por mes, prendas que más mira y qué ofrecerle.</p>
+                    <div class="tabla-scroll">
+                        <table>
+                            <caption class="sr-only">Clientes</caption>
+                            <thead><tr><th scope="col">Cliente</th><th scope="col">Edad</th><th scope="col">Compra más</th><th scope="col">Color favorito</th><th scope="col">Talla</th><th scope="col">Pedidos</th><th scope="col">Gastado</th><th scope="col">Última compra</th><th scope="col"><span class="sr-only">Acciones</span></th></tr></thead>
+                            <tbody id="cuerpo-clientes"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PEDIDOS -->
+                <div class="pestana-panel" id="tab-pedidos" role="tabpanel" hidden>
+                    <div class="barra-admin">
+                        <select id="estado-filtro" aria-label="Filtrar por estado"></select>
+                        <p class="contador-resultados" id="conteo-pedidos"></p>
+                    </div>
+                    <div class="tabla-scroll">
+                        <table>
+                            <caption class="sr-only">Pedidos</caption>
+                            <thead><tr><th scope="col">Pedido</th><th scope="col">Fecha</th><th scope="col">Cliente</th><th scope="col">Prendas</th><th scope="col">Pago</th><th scope="col">Total</th><th scope="col">Estado</th></tr></thead>
+                            <tbody id="cuerpo-pedidos"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- OFERTAS Y CUPONES -->
+                <div class="pestana-panel" id="tab-ofertas" role="tabpanel" hidden>
+                    <div class="grilla-admin-ofertas">
+                        <form class="caja-formulario ancho" id="form-campana" novalidate>
+                            <h3>Campaña y cuenta regresiva</h3>
+                            <p class="nota" id="estado-campana"></p>
+                            <div class="grupo-formulario"><label for="cNombreCampana">Nombre de la campaña</label><input id="cNombreCampana" name="nombre" maxlength="30"></div>
+                            <div class="grupo-formulario"><label for="cSubCampana">Mensaje</label><input id="cSubCampana" name="subtitulo" maxlength="80"></div>
+                            <div class="grupo-formulario"><label for="cFinCampana">Termina el</label><input type="datetime-local" id="cFinCampana" name="fin"></div>
+                            <label class="casilla"><input type="checkbox" name="extender"> Aplicar esta fecha a todas las prendas en oferta</label>
+                            <button type="submit" class="boton">Guardar campaña</button>
+                            <p class="mensaje" role="status" hidden></p>
+                        </form>
+                        <form class="caja-formulario ancho" id="form-oferta-masiva" novalidate>
+                            <h3>Oferta masiva</h3>
+                            <p class="nota">Aplica el mismo descuento a una categoría completa (termina con la campaña). Usa 0% para quitar las ofertas.</p>
+                            <div class="grupo-formulario"><label for="oferta-categoria">Categoría</label><select id="oferta-categoria" name="categoria"></select></div>
+                            <div class="grupo-formulario"><label for="oferta-porcentaje">Descuento (%)</label><input type="number" id="oferta-porcentaje" name="porcentaje" min="0" max="90" value="20"></div>
+                            <button type="submit" class="boton">Aplicar descuento</button>
+                            <p class="mensaje" role="status" hidden></p>
+                        </form>
+                    </div>
+
+                    <h3>Prendas en oferta</h3>
+                    <div class="tabla-scroll">
+                        <table>
+                            <thead><tr><th scope="col">Prenda</th><th scope="col">Precio normal</th><th scope="col">Descuento</th><th scope="col">Precio oferta</th><th scope="col">Hasta</th><th scope="col"><span class="sr-only">Acciones</span></th></tr></thead>
+                            <tbody id="cuerpo-ofertas"></tbody>
+                        </table>
+                    </div>
+
+                    <h3>Cupones</h3>
+                    <div class="tabla-scroll">
+                        <table>
+                            <thead><tr><th scope="col">Código</th><th scope="col">Beneficio</th><th scope="col">Usos</th><th scope="col">Estado</th><th scope="col"><span class="sr-only">Acciones</span></th></tr></thead>
+                            <tbody id="cuerpo-cupones"></tbody>
+                        </table>
+                    </div>
+                    <form class="form-linea" id="form-cupon" novalidate>
+                        <div class="grupo-formulario"><label for="cuCodigo">Nuevo código</label><input id="cuCodigo" name="codigo" placeholder="VERANO25" maxlength="15"></div>
+                        <div class="grupo-formulario"><label for="cuTipo">Tipo</label><select id="cuTipo" name="tipo"><option value="porcentaje">% de descuento</option><option value="monto">Monto fijo (S/)</option><option value="envio">Envío gratis</option></select></div>
+                        <div class="grupo-formulario"><label for="cuValor">Valor</label><input type="number" id="cuValor" name="valor" min="0" step="1" value="10"></div>
+                        <div class="grupo-formulario"><label for="cuMinimo">Compra mínima (S/)</label><input type="number" id="cuMinimo" name="minimo" min="0" step="1" value="0"></div>
+                        <button type="submit" class="boton">Crear cupón</button>
+                        <p class="mensaje" role="alert" hidden></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA: lo dibuja js/app.js -->
+    <footer class="pie" id="pie"></footer>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Revisa tu carrito de compras NOVAK, aplica cupones y finaliza tu pedido.">
+    <meta name="theme-color" content="#1f2038">
+    <title>Carrito - NOVAK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Orden de los scripts: datos -> núcleo -> estadísticas -> administrador -> páginas -->
+    <script src="js/datos.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estadisticas.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/tienda.js" defer></script>
+</head>
+
+<body data-pagina="carrito">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- CABECERA: la dibuja js/app.js para que sea igual en todas las páginas -->
+    <header class="cabecera" id="cabecera"></header>
+
+    <main id="contenido">
+        <div class="contenedor carrito-pagina">
+            <h1 class="titulo-pagina">Tu carrito</h1>
+
+            <div class="carrito-vacio" id="carrito-vacio" hidden>
+                <div class="vacio-grande">
+                    <h2>Tu carrito está vacío</h2>
+                    <p>Descubre lo más vendido o revisa las ofertas de la semana.</p>
+                    <div class="botones-accion centrado">
+                        <a class="boton" href="catalogo.html">Ir al catálogo</a>
+                        <a class="boton boton-claro" href="catalogo.html?oferta=1">Ver ofertas</a>
+                    </div>
+                </div>
+                <h2>Lo más vendido</h2>
+                <div id="riel-sugeridos"></div>
+            </div>
+
+            <div class="carrito-layout" id="carrito-lleno">
+                <div>
+                    <div class="progreso-envio" id="progreso-envio"></div>
+                    <div id="lista-carrito" class="lista-carrito"></div>
+                    <button type="button" class="enlace peligro" data-vaciar>Vaciar carrito</button>
+                </div>
+
+                <aside class="resumen" aria-labelledby="titulo-resumen">
+                    <h2 id="titulo-resumen">Resumen del pedido</h2>
+                    <form class="form-cupon" id="form-cupon-carrito" novalidate>
+                        <label class="sr-only" for="codigo-cupon">Código de cupón</label>
+                        <input type="text" id="codigo-cupon" name="codigo" placeholder="¿Tienes un cupón?" autocomplete="off">
+                        <button type="submit" class="boton boton-claro boton-chico">Aplicar</button>
+                    </form>
+                    <div id="cupon-actual"></div>
+                    <details class="cupones-disponibles"><summary>Ver cupones disponibles</summary><div class="cupones-sugeridos" id="cupones-sugeridos"></div></details>
+                    <div id="resumen-carrito"></div>
+                    <a class="boton boton-bloque boton-grande" href="checkout.html">Ir a pagar</a>
+                    <a class="boton boton-claro boton-bloque" href="catalogo.html">Seguir comprando</a>
+                    <div class="pagos-aceptados"><span class="medio">VISA</span><span class="medio">Mastercard</span><span class="medio yape">Yape</span><span class="medio plin">Plin</span><span class="medio">PagoEfectivo</span></div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA: lo dibuja js/app.js -->
+    <footer class="pie" id="pie"></footer>
+</body>
+
+</html>

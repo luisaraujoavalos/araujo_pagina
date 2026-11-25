@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Escríbenos, consulta horarios o registra un reclamo en NOVAK.">
+    <meta name="theme-color" content="#1f2038">
+    <title>Contacto - NOVAK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Orden de los scripts: datos -> núcleo -> estadísticas -> administrador -> páginas -->
+    <script src="js/datos.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estadisticas.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/tienda.js" defer></script>
+</head>
+
+<body data-pagina="contacto">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- CABECERA: la dibuja js/app.js para que sea igual en todas las páginas -->
+    <header class="cabecera" id="cabecera"></header>
+
+    <main id="contenido">
+        <div class="banner-pagina">
+            <div class="contenedor">
+                <h1>Contáctanos</h1>
+                <p>¿Dudas con tu talla, tu pedido o un cambio? Te respondemos en menos de 24 horas</p>
+            </div>
+        </div>
+
+        <section class="seccion" aria-label="Formulario e información de contacto">
+            <div class="contenedor">
+                <div class="dos-columnas">
+                    <div class="caja-formulario ancho">
+                        <h2>Envíanos un mensaje</h2>
+                        <form id="form-contacto" action="#" method="post" novalidate>
+                            <div class="fila-doble">
+                                <div class="grupo-formulario"><label for="cNombre">Nombre</label><input type="text" id="cNombre" name="nombre" placeholder="Tu nombre" autocomplete="name"></div>
+                                <div class="grupo-formulario"><label for="cCorreo">Correo electrónico</label><input type="email" id="cCorreo" name="correo" placeholder="nombre@correo.com" autocomplete="email"></div>
+                            </div>
+                            <div class="grupo-formulario">
+                                <label for="cMotivo">Motivo</label>
+                                <select id="cMotivo" name="motivo">
+                                    <option value="consulta">Consulta sobre una prenda o talla</option>
+                                    <option value="pedido">Estado de mi pedido</option>
+                                    <option value="cambio">Cambios y devoluciones</option>
+                                    <option value="reclamo">Libro de reclamaciones</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="grupo-formulario">
+                                <label for="cMensaje">Mensaje</label>
+                                <textarea id="cMensaje" name="mensaje" rows="5" placeholder="Cuéntanos en qué podemos ayudarte (si es por un pedido, incluye el número NV-...)"></textarea>
+                            </div>
+                            <button type="submit" class="boton">Enviar mensaje</button>
+                            <p class="mensaje" role="status" hidden></p>
+                        </form>
+                    </div>
+
+                    <aside class="contacto-info">
+                        <h2>Datos de contacto</h2>
+                        <ul class="datos-contacto">
+                            <li><strong>Correo</strong> contacto@novak.pe</li>
+                            <li><strong>Teléfono / WhatsApp</strong> 999 999 999</li>
+                            <li><strong>Tienda Miraflores</strong> Av. Larco 345</li>
+                            <li><strong>Tienda Jockey Plaza</strong> Tienda 214</li>
+                        </ul>
+                        <div class="tabla-scroll">
+                            <table class="tabla-chica">
+                                <caption>Horarios de atención</caption>
+                                <thead><tr><th scope="col">Día</th><th scope="col">Horario</th><th scope="col">Canal</th></tr></thead>
+                                <tbody>
+                                    <tr><th scope="row">Lunes a viernes</th><td>09:00 - 19:00</td><td>Web y WhatsApp</td></tr>
+                                    <tr><th scope="row">Sábados</th><td>09:00 - 13:00</td><td>Web</td></tr>
+                                    <tr><th scope="row">Domingos y feriados</th><td colspan="2">Pedidos las 24 horas; respondemos el siguiente día hábil.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <details class="faq"><summary>¿Cuánto demora mi pedido?</summary><p>Lima: 24 a 48 horas. Provincias: 3 a 5 días hábiles.</p></details>
+                        <details class="faq"><summary>¿Puedo cambiar la talla?</summary><p>Sí, gratis, hasta 30 días después de recibir tu pedido y con la etiqueta puesta.</p></details>
+                        <details class="faq"><summary>¿Qué medios de pago aceptan?</summary><p>Tarjetas Visa, Mastercard, Amex y Diners, Yape, Plin, PagoEfectivo, transferencia y contra entrega en Lima.</p></details>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA: lo dibuja js/app.js -->
+    <footer class="pie" id="pie"></footer>
+</body>
+
+</html>

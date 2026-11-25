@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crea tu cuenta en NOVAK y recibe 15% de descuento en tu primera compra.">
+    <meta name="theme-color" content="#1f2038">
+    <title>Crear cuenta - NOVAK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Orden de los scripts: datos -> núcleo -> estadísticas -> administrador -> páginas -->
+    <script src="js/datos.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estadisticas.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/tienda.js" defer></script>
+</head>
+
+<body data-pagina="registro">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- CABECERA: la dibuja js/app.js para que sea igual en todas las páginas -->
+    <header class="cabecera" id="cabecera"></header>
+
+    <main id="contenido">
+        <div class="banner-pagina">
+            <div class="contenedor">
+                <h1>Crea tu cuenta</h1>
+                <p>Y recibe <b>15% de descuento</b> en tu primera compra con el cupón BIENVENIDA15</p>
+            </div>
+        </div>
+
+        <section class="seccion" aria-labelledby="titulo-registro">
+            <div class="contenedor">
+                <div class="caja-formulario ancho">
+                    <h2 id="titulo-registro">Tus datos</h2>
+                    <form id="form-registro" action="#" method="post" novalidate>
+                        <div class="fila-doble">
+                            <div class="grupo-formulario"><label for="nombreReg">Nombre completo</label><input type="text" id="nombreReg" name="nombre" placeholder="Ej. Ana Torres" autocomplete="name"></div>
+                            <div class="grupo-formulario"><label for="correoReg">Correo</label><input type="email" id="correoReg" name="correo" placeholder="nombre@correo.com" autocomplete="email"></div>
+                        </div>
+                        <div class="fila-triple">
+                            <div class="grupo-formulario"><label for="nacReg">Fecha de nacimiento</label><input type="date" id="nacReg" name="nacimiento"></div>
+                            <div class="grupo-formulario"><label for="generoReg">Género</label>
+                                <select id="generoReg" name="genero"><option value="">Prefiero no decir</option><option value="femenino">Femenino</option><option value="masculino">Masculino</option><option value="otro">Otro</option></select></div>
+                            <div class="grupo-formulario"><label for="telReg">Celular (opcional)</label><input type="tel" id="telReg" name="telefono" placeholder="9XXXXXXXX" autocomplete="tel"></div>
+                        </div>
+                        <div class="grupo-formulario"><label for="distReg">Distrito / ciudad</label><input type="text" id="distReg" name="distrito" placeholder="Ej. San Miguel"></div>
+                        <div class="fila-doble">
+                            <div class="grupo-formulario"><label for="claveReg">Contraseña (mínimo 8 caracteres)</label><input type="password" id="claveReg" name="clave" autocomplete="new-password"></div>
+                            <div class="grupo-formulario"><label for="clave2Reg">Repite la contraseña</label><input type="password" id="clave2Reg" name="clave2" autocomplete="new-password"></div>
+                        </div>
+
+                        <fieldset>
+                            <legend>Tu talla habitual</legend>
+                            <div class="opciones">
+                                <label class="chip-opcion"><input type="radio" name="talla" value="XS"><span>XS</span></label>
+                                <label class="chip-opcion"><input type="radio" name="talla" value="S"><span>S</span></label>
+                                <label class="chip-opcion"><input type="radio" name="talla" value="M" checked><span>M</span></label>
+                                <label class="chip-opcion"><input type="radio" name="talla" value="L"><span>L</span></label>
+                                <label class="chip-opcion"><input type="radio" name="talla" value="XL"><span>XL</span></label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>¿Qué te gusta usar?</legend>
+                            <div class="opciones">
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="polos"><span>Polos</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="camisas"><span>Camisas</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="hoodies"><span>Hoodies</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="casacas"><span>Casacas</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="pantalones"><span>Pantalones</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="shorts"><span>Shorts</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="vestidos"><span>Vestidos</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="calzado"><span>Zapatillas</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="gafas"><span>Gafas</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="relojes"><span>Relojes</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="collares"><span>Collares</span></label>
+                                <label class="chip-opcion"><input type="checkbox" name="prendas" value="gorras"><span>Gorras</span></label>
+                            </div>
+                        </fieldset>
+
+                        <div class="grupo-formulario">
+                            <label for="estilo">Tu estilo</label>
+                            <select id="estilo" name="estilo">
+                                <option value="urbano">Urbano / streetwear</option>
+                                <option value="casual">Casual</option>
+                                <option value="deportivo">Deportivo</option>
+                                <option value="minimalista">Minimalista</option>
+                                <option value="y2k">Y2K / retro</option>
+                            </select>
+                        </div>
+
+                        <label class="casilla"><input type="checkbox" name="novedades" checked> Quiero recibir drops y ofertas por correo</label>
+                        <label class="casilla"><input type="checkbox" name="terminos"> Acepto los términos y condiciones</label>
+
+                        <div class="botones-accion">
+                            <button type="submit" class="boton">Crear mi cuenta</button>
+                            <button type="reset" class="boton boton-claro">Limpiar</button>
+                        </div>
+                        <p class="mensaje" role="status" hidden></p>
+                    </form>
+                    <p class="enlaces-login"><span>¿Ya tienes cuenta? <a href="login.html">Ingresa aquí</a></span></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA: lo dibuja js/app.js -->
+    <footer class="pie" id="pie"></footer>
+</body>
+
+</html>

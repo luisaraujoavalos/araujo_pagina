@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo NOVAK: polos, hoodies, casacas, jeans, zapatillas y accesorios. Filtra por talla, color, precio y ofertas.">
+    <meta name="theme-color" content="#1f2038">
+    <title>Catálogo - NOVAK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Orden de los scripts: datos -> núcleo -> estadísticas -> administrador -> páginas -->
+    <script src="js/datos.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estadisticas.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/tienda.js" defer></script>
+</head>
+
+<body data-pagina="catalogo">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- CABECERA: la dibuja js/app.js para que sea igual en todas las páginas -->
+    <header class="cabecera" id="cabecera"></header>
+
+    <main id="contenido">
+        <div class="banner-pagina banner-catalogo" id="banner-catalogo">
+            <div class="contenedor">
+                <h1 id="titulo-catalogo">Catálogo</h1>
+                <p id="subtitulo-catalogo">Toda la moda NOVAK en un solo lugar</p>
+                <div class="cuenta-regresiva" id="cuenta-catalogo" data-cuenta-regresiva="" hidden></div>
+            </div>
+        </div>
+
+        <section class="seccion seccion-catalogo" aria-label="Productos">
+            <div class="contenedor">
+                <!-- Solo lo ve el administrador -->
+                <div class="aviso-admin" id="aviso-admin" hidden>
+                    <p><strong>Modo administrador.</strong> Puedes ver estadísticas, editar, eliminar y agregar prendas desde aquí o desde el <a href="admin.html">panel</a>.</p>
+                    <button type="button" class="boton" data-accion="nuevo">+ Agregar prenda</button>
+                </div>
+
+                <div class="catalogo-layout">
+                    <aside class="filtros" id="filtros" aria-label="Filtros"></aside>
+                    <div class="fondo-filtros" data-cerrar-filtros></div>
+
+                    <div>
+                        <div class="barra-catalogo">
+                            <button type="button" class="boton boton-claro boton-chico" id="boton-filtros">Filtros</button>
+                            <p class="contador-resultados" id="contador-resultados" aria-live="polite"></p>
+                            <label class="orden-etiqueta">Ordenar por
+                                <select id="orden" class="orden">
+                                    <option value="relevancia">Recomendados</option>
+                                    <option value="vendidos">Más vendidos</option>
+                                    <option value="descuento">Mayor descuento</option>
+                                    <option value="precio-asc">Precio: menor a mayor</option>
+                                    <option value="precio-desc">Precio: mayor a menor</option>
+                                    <option value="nombre">Nombre: A - Z</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="filtros-activos" id="filtros-activos"></div>
+
+                        <div class="catalogo" id="catalogo"></div>
+
+                        <div class="sin-resultados" id="sin-resultados" hidden>
+                            <h3>No encontramos prendas con esos filtros</h3>
+                            <p>Prueba quitando algún filtro o buscando otra palabra.</p>
+                            <button type="button" class="boton" data-filtro-limpiar>Limpiar filtros</button>
+                        </div>
+                        <p class="centrado"><button type="button" class="boton boton-claro" id="ver-mas" hidden>Ver más productos</button></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA: lo dibuja js/app.js -->
+    <footer class="pie" id="pie"></footer>
+</body>
+
+</html>

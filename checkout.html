@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finaliza tu compra en NOVAK: datos, entrega y pago con tarjeta, Yape, Plin, PagoEfectivo o transferencia.">
+    <meta name="theme-color" content="#1f2038">
+    <title>Pago seguro - NOVAK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Orden de los scripts: datos -> núcleo -> estadísticas -> administrador -> páginas -->
+    <script src="js/datos.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estadisticas.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/tienda.js" defer></script>
+</head>
+
+<body data-pagina="checkout">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- CABECERA: la dibuja js/app.js para que sea igual en todas las páginas -->
+    <header class="cabecera" id="cabecera"></header>
+
+    <main id="contenido">
+        <div class="contenedor checkout">
+            <div id="checkout-contenido">
+                <h1 class="titulo-pagina">Finalizar compra</h1>
+                <ol class="indicador-pasos" aria-label="Pasos de la compra">
+                    <li>Datos</li>
+                    <li>Entrega</li>
+                    <li>Pago</li>
+                </ol>
+
+                <div class="checkout-layout">
+                    <div>
+                        <!-- PASO 1 -->
+                        <section class="paso-checkout" data-paso="1" aria-labelledby="titulo-paso1">
+                            <div class="paso-titulo"><span class="num">1</span><h2 id="titulo-paso1">Tus datos</h2><button type="button" class="enlace editar" data-editar-paso="1">Editar</button></div>
+                            <p class="paso-resumen"></p>
+                            <form id="form-datos" class="paso-cuerpo" novalidate>
+                                <div class="fila-doble">
+                                    <div class="grupo-formulario"><label for="chNombre">Nombre completo</label><input id="chNombre" name="nombre" autocomplete="name"></div>
+                                    <div class="grupo-formulario"><label for="chCorreo">Correo</label><input type="email" id="chCorreo" name="correo" autocomplete="email"></div>
+                                </div>
+                                <div class="fila-doble">
+                                    <div class="grupo-formulario"><label for="chTelefono">Celular</label><input id="chTelefono" name="telefono" inputmode="numeric" maxlength="9" placeholder="9XXXXXXXX" autocomplete="tel"></div>
+                                    <div class="grupo-formulario"><label for="chDni">DNI (para la boleta)</label><input id="chDni" name="dni" inputmode="numeric" maxlength="8" placeholder="8 dígitos"></div>
+                                </div>
+                                <button type="submit" class="boton">Continuar a la entrega</button>
+                                <p class="mensaje" role="alert" hidden></p>
+                            </form>
+                        </section>
+
+                        <!-- PASO 2 -->
+                        <section class="paso-checkout" data-paso="2" aria-labelledby="titulo-paso2">
+                            <div class="paso-titulo"><span class="num">2</span><h2 id="titulo-paso2">Entrega</h2><button type="button" class="enlace editar" data-editar-paso="2">Editar</button></div>
+                            <p class="paso-resumen"></p>
+                            <form id="form-entrega" class="paso-cuerpo" novalidate>
+                                <div class="opciones-entrega">
+                                    <label class="opcion-entrega activo"><input type="radio" name="entrega" value="domicilio" checked><span><b>Despacho a domicilio</b><small>Lima 24 - 48 h · Provincias 3 - 5 días</small></span></label>
+                                    <label class="opcion-entrega"><input type="radio" name="entrega" value="recojo"><span><b>Retiro en tienda</b><small>Gratis · listo en 24 h</small></span></label>
+                                </div>
+                                <div id="campos-domicilio">
+                                    <div class="fila-doble">
+                                        <div class="grupo-formulario"><label for="chZona">Zona de envío</label>
+                                            <select id="chZona" name="zona">
+                                                <option value="lima">Lima Metropolitana y Callao (S/ 10)</option>
+                                                <option value="provincia">Provincias (S/ 18)</option>
+                                            </select></div>
+                                        <div class="grupo-formulario" id="campo-departamento" hidden><label for="chDepartamento">Departamento</label><select id="chDepartamento" name="departamento"></select></div>
+                                    </div>
+                                    <div class="grupo-formulario"><label for="chDistrito">Distrito / ciudad</label><input id="chDistrito" name="distrito" placeholder="Ej. Miraflores"></div>
+                                    <div class="grupo-formulario"><label for="chDireccion">Dirección</label><input id="chDireccion" name="direccion" placeholder="Calle, número, dpto." autocomplete="street-address"></div>
+                                    <div class="grupo-formulario"><label for="chReferencia">Referencia (opcional)</label><input id="chReferencia" name="referencia" placeholder="Frente al parque..."></div>
+                                    <p class="nota">Envío gratis por compras desde S/ 199 (después de descuentos).</p>
+                                </div>
+                                <div id="campos-recojo" hidden>
+                                    <div class="grupo-formulario"><label for="chTienda">Tienda</label><select id="chTienda" name="tienda"></select></div>
+                                    <p class="nota">Te avisaremos por correo y WhatsApp cuando tu pedido esté listo. Lleva tu DNI.</p>
+                                </div>
+                                <button type="submit" class="boton">Continuar al pago</button>
+                                <p class="mensaje" role="alert" hidden></p>
+                            </form>
+                        </section>
+
+                        <!-- PASO 3: PASARELA DE PAGO -->
+                        <section class="paso-checkout" data-paso="3" aria-labelledby="titulo-paso3">
+                            <div class="paso-titulo"><span class="num">3</span><h2 id="titulo-paso3">Pago</h2></div>
+                            <form id="form-pago" class="paso-cuerpo" novalidate>
+                                <fieldset class="metodos">
+                                    <legend class="sr-only">Método de pago</legend>
+                                    <label class="metodo activo"><input type="radio" name="metodo" value="tarjeta" checked><span><b>Tarjeta de crédito o débito</b><small>Visa, Mastercard, Amex, Diners</small></span><span class="mini-marcas"><i>VISA</i><i>MC</i><i>AMEX</i></span></label>
+                                    <label class="metodo"><input type="radio" name="metodo" value="yape"><span><b>Yape / Plin</b><small>Escanea el QR desde tu app</small></span><span class="mini-marcas"><i class="yape">Yape</i><i class="plin">Plin</i></span></label>
+                                    <label class="metodo"><input type="radio" name="metodo" value="pagoefectivo"><span><b>PagoEfectivo</b><small>Banca móvil, agentes y bodegas</small></span></label>
+                                    <label class="metodo"><input type="radio" name="metodo" value="transferencia"><span><b>Transferencia bancaria</b><small>BCP, Interbank, BBVA</small></span></label>
+                                    <label class="metodo"><input type="radio" name="metodo" value="contraentrega"><span><b>Pago contra entrega</b><small>Paga en efectivo o POS al recibir (solo Lima)</small></span></label>
+                                </fieldset>
+
+                                <!-- Tarjeta -->
+                                <div class="panel-pago" data-panel="tarjeta">
+                                    <div class="tarjeta-zona">
+                                        <div class="tarjeta-visual" id="tarjeta-visual" aria-hidden="true">
+                                            <div class="tv-cara tv-frente">
+                                                <div class="tv-chip"></div><span class="tv-marca">TARJETA</span>
+                                                <p class="tv-numero">•••• •••• •••• ••••</p>
+                                                <div class="tv-pie"><span class="tv-nombre">NOMBRE DEL TITULAR</span><span class="tv-vence">MM/AA</span></div>
+                                            </div>
+                                            <div class="tv-cara tv-reverso"><div class="tv-banda"></div><div class="tv-cvv">CVV</div></div>
+                                        </div>
+                                        <div class="logos-marcas"><span class="logo-marca" data-marca="Visa">VISA</span><span class="logo-marca" data-marca="Mastercard">Mastercard</span><span class="logo-marca" data-marca="Amex">Amex</span><span class="logo-marca" data-marca="Diners">Diners</span></div>
+                                    </div>
+                                    <div class="grupo-formulario"><label for="pgTarjeta">Número de tarjeta</label><input id="pgTarjeta" name="tarjeta" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19"></div>
+                                    <div class="grupo-formulario"><label for="pgTitular">Nombre del titular</label><input id="pgTitular" name="titular" autocomplete="cc-name" placeholder="Como aparece en la tarjeta"></div>
+                                    <div class="fila-triple">
+                                        <div class="grupo-formulario"><label for="pgVence">Vencimiento</label><input id="pgVence" name="vence" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5"></div>
+                                        <div class="grupo-formulario"><label for="pgCvv">CVV</label><input id="pgCvv" name="cvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="3"></div>
+                                        <div class="grupo-formulario"><label for="pgCuotas">Cuotas</label><select id="pgCuotas" name="cuotas"><option value="1">Sin cuotas</option><option value="3">3 cuotas sin intereses</option><option value="6">6 cuotas</option></select></div>
+                                    </div>
+                                    <p class="nota modo-prueba">🧪 <b>Modo demostración:</b> no se realizan cobros reales ni se guardan datos de tarjeta. Prueba con <code>4111 1111 1111 1111</code> (aprobada) o <code>4000 0000 0000 0002</code> (rechazada), cualquier fecha futura y CVV.</p>
+                                </div>
+
+                                <!-- Yape / Plin -->
+                                <div class="panel-pago" data-panel="yape" hidden>
+                                    <div class="pago-qr">
+                                        <div id="qr-yape"></div>
+                                        <ol>
+                                            <li>Abre Yape o Plin y escanea el código.</li>
+                                            <li>O yapea al <b>999 999 999</b> (NOVAK S.A.C.).</li>
+                                            <li>Monto exacto: <b data-monto>S/ 0.00</b></li>
+                                            <li>Copia el número de operación y escríbelo abajo.</li>
+                                        </ol>
+                                    </div>
+                                    <div class="grupo-formulario"><label for="pgOpYape">Número de operación</label><input id="pgOpYape" name="operacionYape" inputmode="numeric" maxlength="8" placeholder="Ej. 01234567"></div>
+                                    <p class="nota modo-prueba">🧪 QR de demostración: escribe cualquier número de 6 a 8 dígitos.</p>
+                                </div>
+
+                                <!-- PagoEfectivo -->
+                                <div class="panel-pago" data-panel="pagoefectivo" hidden>
+                                    <div class="info-pago">
+                                        <p>Al confirmar generamos tu <b>código CIP</b>. Págalo en las próximas 24 horas desde la banca móvil o web de BCP, BBVA, Interbank, Scotiabank, o en agentes y bodegas afiliadas.</p>
+                                        <p>Monto a pagar: <b data-monto>S/ 0.00</b>. Tu pedido se reserva hasta que se confirme el pago.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Transferencia -->
+                                <div class="panel-pago" data-panel="transferencia" hidden>
+                                    <div class="info-pago">
+                                        <p>Transfiere <b data-monto>S/ 0.00</b> a nombre de <b>NOVAK S.A.C.</b> (RUC 20612345678):</p>
+                                        <ul class="cuentas-banco">
+                                            <li><b>BCP</b> Cta. cte. 191-2345678-0-12 · CCI 002-191-002345678012-55</li>
+                                            <li><b>Interbank</b> Cta. cte. 200-3001234567 · CCI 003-200-003001234567-41</li>
+                                            <li><b>BBVA</b> Cta. cte. 0011-0123-0100045678 · CCI 011-123-000100045678-19</li>
+                                        </ul>
+                                    </div>
+                                    <div class="fila-doble">
+                                        <div class="grupo-formulario"><label for="pgBanco">Banco desde el que pagaste</label><select id="pgBanco" name="banco"><option>BCP</option><option>Interbank</option><option>BBVA</option><option>Scotiabank</option><option>Otro</option></select></div>
+                                        <div class="grupo-formulario"><label for="pgOpBanco">Número de operación</label><input id="pgOpBanco" name="operacionBanco" inputmode="numeric" maxlength="12"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Contra entrega -->
+                                <div class="panel-pago" data-panel="contraentrega" hidden>
+                                    <div class="grupo-formulario"><label for="pgContra">¿Cómo pagarás al recibir?</label><select id="pgContra" name="contraModo"><option>Efectivo</option><option>POS (tarjeta) al recibir</option><option>Yape al recibir</option></select></div>
+                                    <p class="nota">El repartidor te llevará el comprobante. Ten el monto exacto: <b data-monto>S/ 0.00</b></p>
+                                </div>
+
+                                <label class="casilla"><input type="checkbox" name="terminos"> Acepto los <a href="#" onclick="return false">términos y condiciones</a> y la política de privacidad.</label>
+                                <button type="submit" class="boton boton-bloque boton-grande" id="boton-pagar">Pagar</button>
+                                <p class="mensaje" role="alert" hidden></p>
+                            </form>
+                        </section>
+                    </div>
+
+                    <aside class="resumen resumen-checkout" id="resumen-checkout" aria-label="Resumen del pedido"></aside>
+                </div>
+            </div>
+
+            <div id="confirmacion" class="confirmacion" hidden></div>
+        </div>
+
+        <!-- Pantalla de "procesando pago" -->
+        <div class="procesando" id="procesando" hidden role="status">
+            <div class="procesando-caja"><div class="spinner"></div><p>Procesando...</p><small>No cierres ni recargues esta página</small></div>
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA: lo dibuja js/app.js -->
+    <footer class="pie" id="pie"></footer>
+</body>
+
+</html>

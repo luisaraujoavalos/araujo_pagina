@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NOVAK, tienda virtual de moda urbana para la Generación Z y Millennials: polos, hoodies, jeans, zapatillas y accesorios con envío a todo el Perú.">
+    <meta name="theme-color" content="#1f2038">
+    <title>NOVAK - Moda urbana | Stay different</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Orden de los scripts: datos -> núcleo -> estadísticas -> administrador -> páginas -->
+    <script src="js/datos.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/estadisticas.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/tienda.js" defer></script>
+</head>
+
+<body data-pagina="index">
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- CABECERA: la dibuja js/app.js para que sea igual en todas las páginas -->
+    <header class="cabecera" id="cabecera"></header>
+
+    <main id="contenido">
+        <!-- CARRUSEL PRINCIPAL (lo arma js/tienda.js) -->
+        <section class="hero" id="hero-carrusel" aria-roledescription="carrusel" aria-label="Promociones destacadas"></section>
+
+        <!-- FRANJA DE BENEFICIOS -->
+        <div class="franja-info">
+            <div class="contenedor">
+                <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg><span><strong>Envío gratis</strong>Desde S/ 199 a todo el Perú</span></div>
+                <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><span><strong>Paga como quieras</strong>Tarjeta, Yape, Plin o PagoEfectivo</span></div>
+                <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg><span><strong>Cambios gratis</strong>Hasta 30 días después</span></div>
+                <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16l-1-5H5L4 9zM5 9v11h14V9M9 20v-6h6v6"/></svg><span><strong>Retira en tienda</strong>Miraflores y Jockey Plaza</span></div>
+            </div>
+        </div>
+
+        <!-- CATEGORÍAS -->
+        <section class="seccion" aria-labelledby="titulo-categorias">
+            <div class="contenedor">
+                <div class="seccion-cabecera fila">
+                    <h2 id="titulo-categorias">Busca por categoría<span class="punto">.</span></h2>
+                    <a class="enlace-flecha" href="catalogo.html">Ver todo el catálogo →</a>
+                </div>
+                <div id="riel-categorias"></div>
+            </div>
+        </section>
+
+        <!-- OFERTAS CON CUENTA REGRESIVA -->
+        <section class="seccion seccion-oferta" id="seccion-ofertas" aria-labelledby="titulo-campana">
+            <div class="contenedor">
+                <div class="oferta-cabecera">
+                    <div>
+                        <span class="etiqueta-fuego">🔥 Por tiempo limitado</span>
+                        <h2 id="titulo-campana">Ofertas</h2>
+                        <p id="subtitulo-campana"></p>
+                    </div>
+                    <div class="oferta-tiempo">
+                        <small>Termina en</small>
+                        <div class="cuenta-regresiva" data-cuenta-regresiva=""></div>
+                    </div>
+                    <a class="boton boton-lima" href="catalogo.html?oferta=1">Ver todas las ofertas</a>
+                </div>
+                <div id="riel-ofertas"></div>
+            </div>
+        </section>
+
+        <!-- BANNERS MUJER / HOMBRE -->
+        <section class="seccion seccion-corta" aria-label="Comprar por línea">
+            <div class="contenedor banners-duo">
+                <a class="banner-duo" href="catalogo.html?genero=mujer">
+                    <img src="img/vestidos-05.jpg" alt="Modelo con vestido celeste" loading="lazy">
+                    <div><small>Para ella</small><h3>Mujer</h3><span class="boton boton-vidrio">Comprar ahora →</span></div>
+                </a>
+                <a class="banner-duo" href="catalogo.html?genero=hombre">
+                    <img src="img/polos-04.jpg" alt="Modelo con polo gris" loading="lazy">
+                    <div><small>Para él</small><h3>Hombre</h3><span class="boton boton-vidrio">Comprar ahora →</span></div>
+                </a>
+                <a class="banner-duo banner-chico" href="catalogo.html?cat=calzado">
+                    <img src="img/calzado-07.jpg" alt="Zapatillas verde oliva" loading="lazy">
+                    <div><small>Sneakers</small><h3>Zapatillas</h3><span class="boton boton-vidrio">Ver todo →</span></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ENCUENTRA TU FIT (pantalones por apertura de bota) -->
+        <section class="seccion seccion-fit" aria-labelledby="titulo-fit">
+            <div class="contenedor">
+                <div class="fit-cabecera">
+                    <p class="fit-sobre">NOVAK PANTS</p>
+                    <h2 id="titulo-fit">Encuentra tu fit<span class="punto">.</span></h2>
+                    <p>Del más ancho al más ajustado: compara la apertura de bota y elige el tuyo.</p>
+                </div>
+                <div class="grilla-fits" id="grilla-fits"></div>
+            </div>
+        </section>
+
+        <!-- NOVEDADES -->
+        <section class="seccion" aria-labelledby="titulo-nuevos">
+            <div class="contenedor">
+                <div class="seccion-cabecera fila">
+                    <h2 id="titulo-nuevos">Recién llegados<span class="punto">.</span></h2>
+                    <a class="enlace-flecha" href="catalogo.html?nuevo=1">Ver novedades →</a>
+                </div>
+                <div id="riel-nuevos"></div>
+            </div>
+        </section>
+
+        <!-- CUPÓN -->
+        <section class="contenedor cinta-cupon" aria-label="Cupón de descuento">
+            <div>
+                <p class="cupon-sobre">Cupón Gen Z</p>
+                <h2>S/ 20 menos en tu compra desde S/ 120</h2>
+            </div>
+            <div class="cupon-codigo"><span>GENZ20</span><a class="boton boton-lima" href="catalogo.html">Usarlo ahora</a></div>
+        </section>
+
+        <!-- SELECCIONADOS PARA TI (personalizado si el cliente ya compró) -->
+        <section class="seccion" aria-labelledby="titulo-para-ti">
+            <div class="contenedor">
+                <div class="seccion-cabecera fila">
+                    <h2 id="titulo-para-ti">Seleccionados para ti</h2>
+                    <a class="enlace-flecha" href="catalogo.html?orden=vendidos">Más vendidos →</a>
+                </div>
+                <div id="riel-para-ti"></div>
+            </div>
+        </section>
+
+        <section class="seccion seccion-corta" id="seccion-recientes" hidden aria-labelledby="titulo-recientes">
+            <div class="contenedor">
+                <div class="seccion-cabecera fila"><h2 id="titulo-recientes">Vistos recientemente</h2></div>
+                <div id="riel-recientes"></div>
+            </div>
+        </section>
+
+        <!-- COMUNIDAD -->
+        <section class="seccion seccion-clara" aria-labelledby="titulo-comunidad">
+            <div class="contenedor">
+                <div class="seccion-cabecera">
+                    <h2 id="titulo-comunidad">#NOVAKSTYLE</h2>
+                    <p class="subtitulo">Así se visten quienes eligen ser diferentes. Etiquétanos y aparece aquí.</p>
+                </div>
+                <div class="grilla-comunidad">
+                    <a href="producto.html?id=casacas-07"><img src="img/casacas-07.jpg" alt="Casaca varsity" loading="lazy"><span>@sebas.q</span></a>
+                    <a href="producto.html?id=vestidos-02"><img src="img/vestidos-02.jpg" alt="Vestido floral" loading="lazy"><span>@cami.rojas</span></a>
+                    <a href="producto.html?id=pantalones-08"><img src="img/pantalones-08.jpg" alt="Cargo verde oliva" loading="lazy"><span>@lu.paredes</span></a>
+                    <a href="producto.html?id=calzado-05"><img src="img/calzado-05.jpg" alt="Zapatillas azules" loading="lazy"><span>@diego.mdz</span></a>
+                    <a href="producto.html?id=collares-05"><img src="img/collares-05.jpg" alt="Collar de eslabones" loading="lazy"><span>@ari.salazar</span></a>
+                    <a href="producto.html?id=hoodies-08"><img src="img/hoodies-08.jpg" alt="Hoodie terracota" loading="lazy"><span>@joaco.h</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE NOVAK: tarjetas con efecto flip -->
+        <section class="seccion" id="nosotros" aria-labelledby="titulo-nosotros">
+            <div class="contenedor">
+                <div class="seccion-cabecera">
+                    <h2 id="titulo-nosotros">Sobre NOVAK</h2>
+                    <p class="subtitulo">Pasa el cursor o toca cada tarjeta para conocernos mejor.</p>
+                </div>
+                <div class="flip-grid">
+                    <div class="flip" tabindex="0"><div class="flip-interior">
+                        <div class="cara cara-frente tono-1"><span class="flip-num">01</span><h3>Misión</h3></div>
+                        <div class="cara cara-reverso"><p>Vestir a las personas con prendas urbanas cómodas, a precios justos y con envío a todo el país.</p></div>
+                    </div></div>
+                    <div class="flip" tabindex="0"><div class="flip-interior">
+                        <div class="cara cara-frente tono-2"><span class="flip-num">02</span><h3>Visión</h3></div>
+                        <div class="cara cara-reverso"><p>Ser la tienda virtual de moda urbana favorita de los jóvenes que quieren destacar.</p></div>
+                    </div></div>
+                    <div class="flip" tabindex="0"><div class="flip-interior">
+                        <div class="cara cara-frente tono-3"><span class="flip-num">03</span><h3>Valores</h3></div>
+                        <div class="cara cara-reverso"><p>Autenticidad, calidad, trato cercano y respeto por el estilo de cada cliente.</p></div>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIOS -->
+        <section class="seccion seccion-clara" aria-labelledby="titulo-testimonios">
+            <div class="contenedor">
+                <div class="seccion-cabecera">
+                    <h2 id="titulo-testimonios">Lo que dicen nuestros clientes</h2>
+                </div>
+                <div class="testimonios">
+                    <blockquote><span class="estrellas">★★★★★</span><p>El polo blanco es suave y no se deforma después de lavarlo. Ya pedí otro.</p><cite>Camila R. · Lima</cite></blockquote>
+                    <blockquote><span class="estrellas">★★★★★</span><p>Compré la casaca de jean desde el celular y la página se veía perfecta. Llegó al día siguiente.</p><cite>Diego M. · Surco</cite></blockquote>
+                    <blockquote><span class="estrellas">★★★★★</span><p>Me ayudaron a cambiar de talla sin complicaciones. Pagué con Yape en segundos.</p><cite>Valeria T. · Arequipa</cite></blockquote>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA: lo dibuja js/app.js -->
+    <footer class="pie" id="pie"></footer>
+</body>
+
+</html>
